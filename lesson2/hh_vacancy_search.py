@@ -20,7 +20,7 @@ vacancy = 'python'
 vacancy_encoded = vacancy_encode(vacancy)
 
 ENDPOINT_URL = "https://hh.ru/search/vacancy"
-PARAMS = urllib.parse.urlencode({
+PARAMS = ({
     "area": "1",
     # "fromSearchLine": "true",
     "st": "searchVacancy",
@@ -128,8 +128,21 @@ if __name__ == "__main__":
 #     and 'front' in sect.attrs['class'])
 # ]
 
-url = "http://hh.ru"
+ENDPOINT_URL = "https://hh.ru/search/vacancy"
+PARAMS = ({
+    "area": "1",
+    # "fromSearchLine": "true",
+    "st": "searchVacancy",
+    "text": vacancy,
+})
+
+url = "https://hh.ru/search/vacancy?\
+area=1&fromSearchLine=true&st=searchVacancy&text=python"
 # url =  "https://www.kinopoisk.ru/popular/films/?\
 # quick_filters=serials&tab=all"
-response = requests.get(url)
+headers = {
+    "User Agent": "Mozilla/5.0 (Windows NT 6.2; Win64; x64) \
+    AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
+}
+response = requests.get(ENDPOINT_URL, headers=headers, params=PARAMS)
 print(response)
